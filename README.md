@@ -1,10 +1,8 @@
-# WhatsMiau
+# FLow_zap
 
 ![logo-whatsmiau](logo.png)
 
-WhatsMiau is a backend service for WhatsApp, built with Go. It uses the Whatsmeow library to connect to WhatsApp and provides an HTTP API to send and receive messages.
 
-[Community Whatsapp (BR)](https://chat.whatsapp.com/FXMrTY552nOBFXU71Be8Zh)
 ## About The Project
 
 This project provides a robust, scalable, and production-ready solution for integrating WhatsApp functionalities into your applications. It is extremely lightweight, consuming very little memory, making it ideal for resource-constrained environments.
@@ -112,9 +110,6 @@ The application is configured using environment variables. The following variabl
 | `PROXY_STRATEGY` | The strategy to use when selecting a proxy from the list (`RANDOM`). | `RANDOM` |
 | `PROXY_NO_MEDIA` | If set to `true`, media will not be sent through the proxy. | `false` |
 
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/verbeux-ai/whatsmiau/tags).
 
 ## Compatibility
 
@@ -198,6 +193,3 @@ The application can send webhook events for the following actions:
 | `MESSAGES_UPDATE` | Triggered when a message status changes (e.g., read). |
 | `CONTACTS_UPSERT` | Triggered when a contact is created or updated.     |
 
-
-## Did you like project?
-Donate: https://buy.stripe.com/8x28wI5vKfPbe9b8ih1VK0f

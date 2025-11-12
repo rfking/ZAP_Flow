@@ -8,4 +8,5 @@ import (
 func Webhook(group *echo.Group) {
     group.POST("", controllers.AddWebhook)
     group.DELETE("", controllers.DeleteWebhook)
+    	group.GET("", controllers.GetWebhook)
 }

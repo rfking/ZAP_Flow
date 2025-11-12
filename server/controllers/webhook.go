@@ -2,6 +2,8 @@ package controllers
 
 import (
     "github.com/labstack/echo/v4"
+		"github.com/verbeux-ai/whatsmiau/repositories/instances"
+		"github.com/verbeux-ai/whatsmiau/models"
 )
 
 var webhooks = make(map[string]string)

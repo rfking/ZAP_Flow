@@ -3,6 +3,7 @@ package routes
 import (
 	"github.com/labstack/echo/v4"
 	"github.com/verbeux-ai/whatsmiau/server/middleware"
+	"ZAP_Flow/server/routes"
 )
 
 func Load(app *echo.Echo) {
@@ -19,4 +20,5 @@ func V1(group *echo.Group) {
 
 	ChatEVO(group.Group("/chat"))
 	MessageEVO(group.Group("/message"))
+	routes.Webhook(group.Group("/instance/:instance/webhook"))
 }

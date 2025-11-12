@@ -2,7 +2,7 @@ package routes
 
 import (
     "github.com/labstack/echo/v4"
-    "ZAP_Flow/server/controllers"
+    "github.com/verbeux-ai/whatsmiau/server/controllers"
 )
 
 func Webhook(group *echo.Group) {

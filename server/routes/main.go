@@ -3,7 +3,7 @@ package routes
 import (
 	"github.com/labstack/echo/v4"
 	"github.com/verbeux-ai/whatsmiau/server/middleware"
-	"ZAP_Flow/server/routes"
+	"github.com/verbeux-ai/whatsmiau/server/routes"
 )
 
 func Load(app *echo.Echo) {

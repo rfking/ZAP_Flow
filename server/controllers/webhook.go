@@ -4,7 +4,7 @@ import (
     "github.com/labstack/echo/v4"
 )
 
-var webhooks = make(map[string]string) // Simples mapexemplo, pode ser BD depois!
+var webhooks = make(map[string]string)
 
 func AddWebhook(ctx echo.Context) error {
     instanceId := ctx.Param("instance")

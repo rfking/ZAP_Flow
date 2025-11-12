@@ -4,7 +4,6 @@
 
 WhatsMiau is a backend service for WhatsApp, built with Go. It uses the Whatsmeow library to connect to WhatsApp and provides an HTTP API to send and receive messages.
 
-[Community Whatsapp (BR)](https://chat.whatsapp.com/FXMrTY552nOBFXU71Be8Zh)
 ## About The Project
 
 This project provides a robust, scalable, and production-ready solution for integrating WhatsApp functionalities into your applications. It is extremely lightweight, consuming very little memory, making it ideal for resource-constrained environments.
@@ -128,27 +127,6 @@ WhatsMiau is designed to be a lightweight, drop-in replacement for the Evolution
 
 Since WhatsMiau maintains compatibility with the Evolution API's routes, you only need to stop your Evolution API server and start the WhatsMiau server. No changes to your existing API calls are necessary.
 
-### Example
-
-For instance, if you were sending a text message using a `curl` command to an Evolution API server running on `localhost:8080`, the exact same command will work with WhatsMiau.
-
-**Before (Evolution API):**
-```bash
-curl -X POST 'http://localhost:8080/message/sendText/my-instance' \
--H 'Content-Type: application/json' \
--H 'apikey: YOUR_API_KEY' \
--d ".{\"number\": \"1234567890\",\"textMessage\": {\"text\": \"Hello from Evolution API!\"}}"
-```
-
-**After (WhatsMiau):**
-
-Simply point your application to the WhatsMiau server URL. The same request will be handled by WhatsMiau:
-```bash
-curl -X POST 'http://localhost:8080/v1/message/sendText/my-instance' \
--H 'Content-Type: application/json' \
--H 'apikey: YOUR_API_KEY' \
--d ".{\"number\": \"1234567890\",\"textMessage\": {\"text\": \"Hello from WhatsMiau!\"}}"
-```
 
 ## API Routes
 
@@ -197,7 +175,3 @@ The application can send webhook events for the following actions:
 | `MESSAGES_UPSERT` | Triggered when a new message is received.           |
 | `MESSAGES_UPDATE` | Triggered when a message status changes (e.g., read). |
 | `CONTACTS_UPSERT` | Triggered when a contact is created or updated.     |
-
-
-## Did you like project?
-Donate: https://buy.stripe.com/8x28wI5vKfPbe9b8ih1VK0f

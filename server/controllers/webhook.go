@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
-	"github.com/verbeux-ai/whatsmiau/server/services"
+	"github.com/verbeux-ai/whatsmiau/services" // ✅ CORRIGIDO - remova "server/"
 )
 
 type WebhookReq struct {

@@ -19,5 +19,5 @@ func V1(group *echo.Group) {
 
 	ChatEVO(group.Group("/chat"))
 	MessageEVO(group.Group("/message"))
-	    WebhookRoutes(group)
+	WebhookRoutes(group)
 }

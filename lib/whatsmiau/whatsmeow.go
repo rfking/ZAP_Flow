@@ -13,6 +13,7 @@ import (
 	"github.com/verbeux-ai/whatsmiau/models"
 	"github.com/verbeux-ai/whatsmiau/repositories/instances"
 	"github.com/verbeux-ai/whatsmiau/services"
+	"github.com/verbeux-ai/whatsmiau/utils" // ADICIONE ESTE IMPORT
 	"go.mau.fi/whatsmeow"
 	"go.mau.fi/whatsmeow/store/sqlstore"
 	"go.mau.fi/whatsmeow/types"
@@ -136,6 +137,57 @@ func LoadMiau(ctx context.Context, container *sqlstore.Container) {
 		return true
 	})
 
+}
+
+// ✅ ADICIONE ESTA FUNÇÃO HANDLE - É ESSENCIAL PARA O WEBHOOK
+func (s *Whatsmiau) Handle(id string) func(interface{}) {
+	return func(evt interface{}) {
+		// ✅ DISPARA O WEBHOOK PARA TODOS OS EVENTOS
+		go func() {
+			s.webhookTrigger(evt)
+		}()
+
+		// Você pode adicionar logging ou outros processamentos aqui se quiser
+		zap.L().Debug("event received", 
+			zap.String("instance_id", id),
+			zap.String("event_type", getEventType(evt)))
+	}
+}
+
+// ✅ FUNÇÃO AUXILIAR PARA IDENTIFICAR O TIPO DE EVENTO
+func getEventType(evt interface{}) string {
+	switch evt.(type) {
+	case *events.Message:
+		return "Message"
+	case *events.Receipt:
+		return "Receipt"
+	case *events.Presence:
+		return "Presence"
+	case *events.HistorySync:
+		return "HistorySync"
+	case *events.AppState:
+		return "AppState"
+	case *events.KeepAliveTimeout:
+		return "KeepAliveTimeout"
+	case *events.Connected:
+		return "Connected"
+	case *events.Disconnected:
+		return "Disconnected"
+	case *events.LoggedOut:
+		return "LoggedOut"
+	case *events.StreamReplaced:
+		return "StreamReplaced"
+	case *events.CallOffer:
+		return "CallOffer"
+	case *events.CallAccept:
+		return "CallAccept"
+	case *events.CallReject:
+		return "CallReject"
+	case *events.CallTerminate:
+		return "CallTerminate"
+	default:
+		return "Unknown"
+	}
 }
 
 func (s *Whatsmiau) Connect(ctx context.Context, id string) (string, error) {
@@ -417,4 +469,21 @@ func (s *Whatsmiau) extractJidLid(ctx context.Context, id string, jid types.JID)
 	}
 
 	return jid.ToNonAD().String(), ""
+}
+
+// ✅ WEBHOOK DISPARA EVENTOS
+func (s *Whatsmiau) webhookTrigger(evt interface{}) {
+	url := services.GetWebhook()
+	if url == "" {
+		return
+	}
+
+	go func() {
+		err := utils.PostJSON(url, evt)
+		if err != nil {
+			zap.L().Error("failed to send webhook", zap.Error(err), zap.String("url", url))
+		} else {
+			zap.L().Debug("webhook sent successfully", zap.String("url", url))
+		}
+	}()
 }

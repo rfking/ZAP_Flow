@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
-	"github.com/verbeux-ai/whatsmiau/services" // ✅ CORRIGIDO - remova "server/"
+	"github.com/verbeux-ai/whatsmiau/services"
 )
 
 type WebhookReq struct {
@@ -35,7 +35,7 @@ func GetWebhook(ctx echo.Context) error {
 }
 
 func DeleteWebhook(ctx echo.Context) error {
-	services.DeleteWebhook()
+	services.SetWebhook("") // ✅ CORRIGIDO - deleta o webhook setando como vazio
 	return ctx.JSON(http.StatusOK, echo.Map{
 		"message": "webhook deleted",
 	})

@@ -19,4 +19,7 @@ func V1(group *echo.Group) {
 
 	ChatEVO(group.Group("/chat"))
 	MessageEVO(group.Group("/message"))
+	group.POST("/webhook", controllers.SetWebhook)
+    group.GET("/webhook", controllers.GetWebhook)
+    group.DELETE("/webhook", controllers.DeleteWebhook)
 }

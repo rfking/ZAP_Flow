@@ -13,8 +13,9 @@ import (
 	"github.com/verbeux-ai/whatsmiau/models"
 	"github.com/verbeux-ai/whatsmiau/repositories/instances"
 	"github.com/verbeux-ai/whatsmiau/services"
-	"github.com/verbeux-ai/whatsmiau/utils" // ADICIONE ESTE IMPORT
+	"github.com/verbeux-ai/whatsmiau/utils"
 	"go.mau.fi/whatsmeow"
+	"go.mau.fi/whatsmeow/events"
 	"go.mau.fi/whatsmeow/store/sqlstore"
 	"go.mau.fi/whatsmeow/types"
 	waLog "go.mau.fi/whatsmeow/util/log"
